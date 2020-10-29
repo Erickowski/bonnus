@@ -1,19 +1,17 @@
-import FacebookLogin from "react-facebook-login";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+import Layout from "./components/Layout";
+import Login from "./components/Login";
 
 function App() {
-  const responseFacebook = (response) => {
-    console.log(response);
-  };
-
   return (
-    <div className="App">
-      <FacebookLogin
-        appId="773759290147154"
-        autoLoad={false}
-        fields="name,email,picture"
-        callback={responseFacebook}
-      />
-    </div>
+    <Router>
+      <Layout>
+        <Switch>
+          <Route exact path="/" component={Login} />
+        </Switch>
+      </Layout>
+    </Router>
   );
 }
 
