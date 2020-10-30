@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 const ProfileContainer = styled.main`
   min-height: 82vh;
@@ -25,7 +26,13 @@ const ProfileContainer = styled.main`
 `;
 
 const Profile = () => {
+  const history = useHistory();
+
   const usuario = useSelector((state) => state.auth.usuario);
+
+  if (!usuario) {
+    history.push("/");
+  }
   return (
     <ProfileContainer>
       <h1>Mi perfil</h1>
