@@ -17,7 +17,12 @@ const Login = () => {
   }
 
   const responseFacebook = (response) => {
-    dispatch(autenticarUsuario(response.accessToken));
+    const usuario = {
+      nombre: response.name,
+      email: response.email,
+      imagen: response.picture.data.url,
+    };
+    dispatch(autenticarUsuario(response.accessToken, usuario));
   };
 
   return (

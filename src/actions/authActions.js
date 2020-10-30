@@ -1,16 +1,19 @@
 import { AUTH_USUARIO, CERRAR_SESION } from "../types";
 
-export function autenticarUsuario(token) {
+export function autenticarUsuario(token, usuario) {
   return (dispatch) => {
-    dispatch(crearToken(token));
+    dispatch(logearUsuario(token, usuario));
   };
 }
 
-const crearToken = (token) => {
+const logearUsuario = (token, usuario) => {
   localStorage.setItem("token", token);
   return {
     type: AUTH_USUARIO,
-    payload: token,
+    payload: {
+      token: token,
+      usuario: usuario,
+    },
   };
 };
 

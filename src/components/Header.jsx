@@ -21,7 +21,12 @@ const HeaderContainer = styled.header`
     ul {
       list-style: none;
       li {
+        display: inline-block;
         cursor: pointer;
+        margin-right: 1rem;
+        &:last-of-type {
+          margin-right: 0;
+        }
       }
     }
   }
@@ -38,6 +43,12 @@ const Header = () => {
       {token && (
         <nav>
           <ul>
+            <li>Now Playing</li>
+            <li>Popular</li>
+            <li>Top Rated</li>
+            <li>Upcoming</li>
+            <li>Mis favoritos</li>
+            <li>Mi perfil</li>
             <li onClick={() => dispatch(logout())}>Cerrar sesión</li>
           </ul>
         </nav>
