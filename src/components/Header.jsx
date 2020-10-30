@@ -6,28 +6,39 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../actions/authActions";
 
 const HeaderContainer = styled.header`
-  width: 100vw;
-  padding: 1rem;
+  padding: 1rem 0;
   display: flex;
-  justify-content: ${(props) => (props.token ? "space-between" : "center")};
+  flex-direction: column;
+  align-items: center;
   background-color: var(--blue);
   a {
     color: var(--white);
-    text-transform: uppercase;
     text-decoration: none;
+  }
+  .title {
+    text-transform: uppercase;
   }
   nav {
     color: var(--white);
+    margin-top: 1rem;
     ul {
       list-style: none;
+      text-align: center;
       li {
         display: inline-block;
         cursor: pointer;
         margin-right: 1rem;
-        &:last-of-type {
+        /* &:last-of-type {
           margin-right: 0;
-        }
+        } */
       }
+    }
+  }
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: ${(props) => (props.token ? "space-between" : "center")};
+    nav {
+      margin-top: 0;
     }
   }
 `;
@@ -39,16 +50,22 @@ const Header = () => {
 
   return (
     <HeaderContainer token={token}>
-      <Link to="/">Aplicación peliculas</Link>
+      <Link to="/" className="title">
+        Aplicación peliculas
+      </Link>
       {token && (
         <nav>
           <ul>
-            <li>Now Playing</li>
+            <li>
+              <Link to="/home">Now Playing</Link>
+            </li>
             <li>Popular</li>
             <li>Top Rated</li>
             <li>Upcoming</li>
             <li>Mis favoritos</li>
-            <li>Mi perfil</li>
+            <li>
+              <Link to="/profile">Mi perfil</Link>
+            </li>
             <li onClick={() => dispatch(logout())}>Cerrar sesión</li>
           </ul>
         </nav>
