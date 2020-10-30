@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Axios from "axios";
 
-import { getPeliculasNowPlaying } from "../actions/movieActions";
+import { getPeliculas } from "../actions/movieActions";
 
 import Movie from "../components/Movie";
 import Loader from "../components/Loader";
@@ -27,7 +27,7 @@ const Upcoming = () => {
         const resultado = await Axios.get(
           `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`
         );
-        dispatch(getPeliculasNowPlaying(resultado.data.results));
+        dispatch(getPeliculas(resultado.data.results));
       } catch (error) {
         console.log(error);
       }

@@ -1,14 +1,27 @@
-import { PELICULAS_NOWPLAYING } from "../types";
+import { OBTENER_PELICULAS, OBTENER_PELICULA } from "../types";
 
-export function getPeliculasNowPlaying(movies) {
+export function getPeliculas(movies) {
   return (dispatch) => {
-    dispatch(peliculasNowPlatying(movies));
+    dispatch(peliculas(movies));
   };
 }
 
-const peliculasNowPlatying = (movies) => {
+const peliculas = (movies) => {
   return {
-    type: PELICULAS_NOWPLAYING,
+    type: OBTENER_PELICULAS,
     payload: movies,
+  };
+};
+
+export function getPelicula(movie) {
+  return (dispatch) => {
+    dispatch(pelicula(movie));
+  };
+}
+
+const pelicula = (movie) => {
+  return {
+    type: OBTENER_PELICULA,
+    payload: movie,
   };
 };

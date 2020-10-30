@@ -10,6 +10,7 @@ import Profile from "./pages/Profile";
 import Popular from "./pages/Popular";
 import TopRated from "./pages/TopRated";
 import Upcoming from "./pages/Upcoming";
+import MovieDetail from "./pages/MovieDetail";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route exact path="/popular" component={Popular} />
             <Route exact path="/top-rated" component={TopRated} />
             <Route exact path="/upcoming" component={Upcoming} />
+            <Route exact path="/movie/:id" component={MovieDetail} />
           </Switch>
         </Layout>
       </Provider>

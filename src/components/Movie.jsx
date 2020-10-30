@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
+import { Link } from "react-router-dom";
 
 const MovieCard = styled.div`
   width: 80vw;
@@ -55,6 +56,16 @@ const MovieCard = styled.div`
   }
 `;
 
+const MovieLink = styled(Link)`
+  border: none;
+  background-color: var(--blue);
+  color: var(--white);
+  padding: 0.25rem;
+  border-radius: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+`;
+
 const Movie = ({ movie }) => {
   return (
     <MovieCard image={movie.poster_path}>
@@ -63,7 +74,7 @@ const Movie = ({ movie }) => {
         <p>
           {movie.vote_average} <i className="fas fa-star"></i>
         </p>
-        <button type="button">Ver más</button>
+        <MovieLink to={`/movie/${movie.id}`}>Ver más</MovieLink>
         <i className="far fa-heart"></i>
       </div>
     </MovieCard>

@@ -2,77 +2,44 @@ import React from "react";
 import styled from "@emotion/styled";
 
 const Spinner = styled.div`
-  margin: 100px auto;
-  width: 50px;
+  width: 40px;
   height: 40px;
-  text-align: center;
-  font-size: 10px;
+  background-color: var(--blue);
 
-  > div {
-    background-color: var(--blue);
-    height: 100%;
-    width: 6px;
-    display: inline-block;
+  margin: 100px auto;
+  animation: sk-rotateplane 1.2s infinite ease-in-out;
+  -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
 
-    -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
-    animation: sk-stretchdelay 1.2s infinite ease-in-out;
-  }
-
-  .rect2 {
-    -webkit-animation-delay: -1.1s;
-    animation-delay: -1.1s;
-  }
-
-  .rect3 {
-    -webkit-animation-delay: -1s;
-    animation-delay: -1s;
-  }
-
-  .rect4 {
-    -webkit-animation-delay: -0.9s;
-    animation-delay: -0.9s;
-  }
-
-  .rect5 {
-    -webkit-animation-delay: -0.8s;
-    animation-delay: -0.8s;
-  }
-
-  @-webkit-keyframes sk-stretchdelay {
-    0%,
-    40%,
+  @-webkit-keyframes sk-rotateplane {
+    0% {
+      -webkit-transform: perspective(120px);
+    }
+    50% {
+      -webkit-transform: perspective(120px) rotateY(180deg);
+    }
     100% {
-      -webkit-transform: scaleY(0.4);
-    }
-    20% {
-      -webkit-transform: scaleY(1);
+      -webkit-transform: perspective(120px) rotateY(180deg) rotateX(180deg);
     }
   }
 
-  @keyframes sk-stretchdelay {
-    0%,
-    40%,
-    100% {
-      transform: scaleY(0.4);
-      -webkit-transform: scaleY(0.4);
+  @keyframes sk-rotateplane {
+    0% {
+      transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+      -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
     }
-    20% {
-      transform: scaleY(1);
-      -webkit-transform: scaleY(1);
+    50% {
+      transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+      -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+    }
+    100% {
+      transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+      -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
     }
   }
 `;
 
 const Loader = () => {
-  return (
-    <Spinner>
-      <div className="rect1"></div>
-      <div className="rect2"></div>
-      <div className="rect3"></div>
-      <div className="rect4"></div>
-      <div className="rect5"></div>
-    </Spinner>
-  );
+  return <Spinner />;
 };
 
 export default Loader;
