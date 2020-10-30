@@ -1,4 +1,4 @@
-import { AUTH_USUARIO } from "../types";
+import { AUTH_USUARIO, CERRAR_SESION } from "../types";
 
 export function autenticarUsuario(token) {
   return (dispatch) => {
@@ -14,4 +14,15 @@ const crearToken = (token) => {
   };
 };
 
-// localStorage.removeItem("token");
+export function logout() {
+  return (dispatch) => {
+    dispatch(cerrarSesion());
+  };
+}
+
+const cerrarSesion = () => {
+  localStorage.removeItem("token");
+  return {
+    type: CERRAR_SESION,
+  };
+};

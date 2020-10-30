@@ -1,4 +1,4 @@
-import { AUTH_USUARIO } from "../types";
+import { AUTH_USUARIO, CERRAR_SESION } from "../types";
 
 const initialState = {
   token: localStorage.getItem("token"),
@@ -11,6 +11,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         token: action.payload,
+      };
+    case CERRAR_SESION:
+      return {
+        ...state,
+        token: null,
       };
     default:
       return state;
