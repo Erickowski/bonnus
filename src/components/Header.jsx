@@ -28,9 +28,6 @@ const HeaderContainer = styled.header`
         display: inline-block;
         cursor: pointer;
         margin-right: 1rem;
-        /* &:last-of-type {
-          margin-right: 0;
-        } */
       }
     }
   }
@@ -59,7 +56,9 @@ const Header = () => {
             <li>
               <Link to="/home">Now Playing</Link>
             </li>
-            <li>Popular</li>
+            <li>
+              <Link to="/popular">Popular</Link>
+            </li>
             <li>Top Rated</li>
             <li>Upcoming</li>
             <li>Mis favoritos</li>
