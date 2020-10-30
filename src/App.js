@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Popular from "./pages/Popular";
 import TopRated from "./pages/TopRated";
+import Upcoming from "./pages/Upcoming";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/popular" component={Popular} />
             <Route exact path="/top-rated" component={TopRated} />
+            <Route exact path="/upcoming" component={Upcoming} />
           </Switch>
         </Layout>
       </Provider>
