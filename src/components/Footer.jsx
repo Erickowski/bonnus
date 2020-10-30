@@ -7,7 +7,6 @@ const FooterContainer = styled.footer`
   flex-direction: column;
   align-items: center;
   color: var(--white);
-  font-family: var(--font);
   padding: 1rem;
   div p {
     margin: 0.5rem 0;

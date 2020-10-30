@@ -11,6 +11,26 @@ import Loader from "../components/Loader";
 const MovieDetailContainer = styled.main`
   display: flex;
   flex-direction: column;
+  padding: 2rem;
+  align-items: center;
+  div {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    button {
+      display: flex;
+      align-items: center;
+      border: none;
+      border-radius: 1rem;
+      background-color: var(--blue);
+      cursor: pointer;
+      color: var(--white);
+      i {
+        margin-left: 1rem;
+      }
+    }
+  }
 `;
 
 const MovieDetail = ({
@@ -34,24 +54,13 @@ const MovieDetail = ({
         Axios(urls[1]),
       ]);
 
-      const {
-        original_title,
-        overview,
-        backdrop_path,
-        release_date,
-        vote_average,
-        runtime,
-      } = movieData.data;
+      const { original_title } = movieData.data;
       const { key } = video.data.results[0];
+
       dispatch(
         getPelicula({
           nombre: original_title,
           video: `https://www.youtube.com/watch?v=${key}`,
-          sinopsis: overview,
-          imagen: backdrop_path,
-          fecha: release_date,
-          votos_promedio: vote_average,
-          duracion: runtime,
         })
       );
     };
@@ -61,15 +70,15 @@ const MovieDetail = ({
 
   if (Object.keys(movie).length === 0) return <Loader />;
 
-  console.log(movie);
-
   return (
     <MovieDetailContainer>
       <div>
         <h1>{movie.nombre}</h1>
-        <button>Agregar a favoritos</button>
+        <button>
+          Agregar a favoritos <i className="far fa-heart"></i>
+        </button>
       </div>
-      <ReactPlayer url={movie.video} controls width="60vw" height="50vh" />
+      <ReactPlayer url={movie.video} controls width="60vw" height="60vh" />
     </MovieDetailContainer>
   );
 };
