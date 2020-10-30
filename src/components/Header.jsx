@@ -59,7 +59,9 @@ const Header = () => {
             <li>
               <Link to="/popular">Popular</Link>
             </li>
-            <li>Top Rated</li>
+            <li>
+              <Link to="/top-rated">Top Rated</Link>
+            </li>
             <li>Upcoming</li>
             <li>Mis favoritos</li>
             <li>

@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Popular from "./pages/Popular";
+import TopRated from "./pages/TopRated";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route exact path="/home" component={Home} />
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/popular" component={Popular} />
+            <Route exact path="/top-rated" component={TopRated} />
           </Switch>
         </Layout>
       </Provider>
