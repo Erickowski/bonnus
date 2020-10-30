@@ -1,21 +1,15 @@
 import React from "react";
-import styled from "@emotion/styled";
-
-import Login from "../components/Login";
-
-const HomeContainer = styled.main`
-  min-height: 82vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 const Home = () => {
-  return (
-    <HomeContainer>
-      <Login />
-    </HomeContainer>
-  );
+  const history = useHistory();
+  const token = useSelector((state) => state.auth.token);
+  if (!token) {
+    history.push("/");
+  }
+
+  return <h1>Home</h1>;
 };
 
 export default Home;
