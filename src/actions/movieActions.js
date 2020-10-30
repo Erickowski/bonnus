@@ -1,4 +1,9 @@
-import { OBTENER_PELICULAS, OBTENER_PELICULA } from "../types";
+import {
+  OBTENER_PELICULAS,
+  OBTENER_PELICULA,
+  AGREGAR_FAVORITO,
+  OBTENER_FAVORITOS,
+} from "../types";
 
 export function getPeliculas(movies) {
   return (dispatch) => {
@@ -23,5 +28,30 @@ const pelicula = (movie) => {
   return {
     type: OBTENER_PELICULA,
     payload: movie,
+  };
+};
+
+export function addFavorito(movie) {
+  return (dispatch) => {
+    dispatch(agregarFavorito(movie));
+  };
+}
+
+const agregarFavorito = (movie) => {
+  return {
+    type: AGREGAR_FAVORITO,
+    payload: movie,
+  };
+};
+
+export function getFavoritos(favoritos) {
+  return (dispatch) => {
+    dispatch(obtenerFavoritos(favoritos));
+  };
+}
+const obtenerFavoritos = (favoritos) => {
+  return {
+    type: OBTENER_FAVORITOS,
+    payload: favoritos,
   };
 };

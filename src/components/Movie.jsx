@@ -1,11 +1,15 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+import { addFavorito } from "../actions/movieActions";
 
 const MovieCard = styled.div`
   width: 80vw;
   height: 50vh;
   margin-bottom: 1rem;
+  margin-right: 0.5rem;
   padding: 0;
   border: 0.25rem solid var(--blue);
   border-radius: 1rem;
@@ -38,12 +42,7 @@ const MovieCard = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    button {
-      border: none;
-      background-color: var(--blue);
-      color: var(--white);
-      padding: 0.25rem;
-      border-radius: 1rem;
+    i {
       cursor: pointer;
     }
   }
@@ -67,15 +66,30 @@ const MovieLink = styled(Link)`
 `;
 
 const Movie = ({ movie }) => {
+  const { original_title, poster_path, id, vote_average } = movie;
+
+  const dispatch = useDispatch();
+
+  const handleFavorito = () => {
+    dispatch(
+      addFavorito({
+        id,
+        original_title,
+        poster_path,
+        vote_average,
+      })
+    );
+  };
+
   return (
-    <MovieCard image={movie.poster_path}>
-      <h2>{movie.original_title}</h2>
+    <MovieCard image={poster_path}>
+      <h2>{original_title}</h2>
       <div>
         <p>
-          {movie.vote_average} <i className="fas fa-star"></i>
+          {vote_average} <i className="fas fa-star"></i>
         </p>
-        <MovieLink to={`/movie/${movie.id}`}>Ver más</MovieLink>
-        <i className="far fa-heart"></i>
+        <MovieLink to={`/movie/${id}`}>Ver más</MovieLink>
+        <i className="far fa-heart" onClick={() => handleFavorito()}></i>
       </div>
     </MovieCard>
   );

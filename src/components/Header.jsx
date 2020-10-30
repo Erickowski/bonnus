@@ -65,7 +65,9 @@ const Header = () => {
             <li>
               <Link to="/upcoming">Upcoming</Link>
             </li>
-            <li>Mis favoritos</li>
+            <li>
+              <Link to="/favorites">Mis favoritos</Link>
+            </li>
             <li>
               <Link to="/profile">Mi perfil</Link>
             </li>

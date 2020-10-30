@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Global, css } from "@emotion/core";
+import { useDispatch } from "react-redux";
+
+import { getFavoritos } from "../actions/movieActions";
 
 import Header from "./Header";
 import Footer from "./Footer";
 
 const Layout = ({ children }) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    let favoritos = JSON.parse(localStorage.getItem("favoritos"));
+    dispatch(getFavoritos(favoritos));
+    // eslint-disable-next-line
+  }, []);
+
   return (
     <>
       <Global
