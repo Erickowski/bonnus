@@ -4,7 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "@emotion/styled";
 import ReactPlayer from "react-player";
 
-import { getPelicula } from "../actions/movieActions";
+import {
+  addFavorito,
+  deleteFavorito,
+  getPelicula,
+} from "../actions/movieActions";
 
 import Loader from "../components/Loader";
 
@@ -40,7 +44,31 @@ const MovieDetail = ({
 }) => {
   const dispatch = useDispatch();
 
+  const movieId = Number(id);
+
   const movie = useSelector((state) => state.movies.movie);
+  const favoritos = useSelector((state) => state.movies.favoritos);
+
+  const isFavorite = favoritos.filter((favorito) => favorito.id === movieId);
+
+  const { original_title, poster_path, vote_average } = movie;
+
+  console.log(movie);
+
+  const handleAddFavorito = () => {
+    dispatch(
+      addFavorito({
+        id: movieId,
+        original_title,
+        poster_path,
+        vote_average,
+      })
+    );
+  };
+
+  const handleDeleteFavorito = () => {
+    dispatch(deleteFavorito(movieId));
+  };
 
   useEffect(() => {
     const getMovie = async () => {
@@ -54,13 +82,15 @@ const MovieDetail = ({
         Axios(urls[1]),
       ]);
 
-      const { original_title } = movieData.data;
+      const { original_title, poster_path, vote_average } = movieData.data;
       const { key } = video.data.results[0];
 
       dispatch(
         getPelicula({
           nombre: original_title,
           video: `https://www.youtube.com/watch?v=${key}`,
+          poster_path,
+          vote_average,
         })
       );
     };
@@ -74,9 +104,15 @@ const MovieDetail = ({
     <MovieDetailContainer>
       <div>
         <h1>{movie.nombre}</h1>
-        <button>
-          Agregar a favoritos <i className="far fa-heart"></i>
-        </button>
+        {isFavorite.length === 0 ? (
+          <button type="button" onClick={() => handleAddFavorito()}>
+            Agregar a favoritos <i className="far fa-heart"></i>
+          </button>
+        ) : (
+          <button type="button" onClick={() => handleDeleteFavorito()}>
+            Quitar de favoritos <i className="fas fa-heart"></i>
+          </button>
+        )}
       </div>
       <ReactPlayer url={movie.video} controls width="60vw" height="60vh" />
     </MovieDetailContainer>

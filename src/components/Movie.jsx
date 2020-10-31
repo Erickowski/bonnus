@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-import { addFavorito } from "../actions/movieActions";
+import { addFavorito, deleteFavorito } from "../actions/movieActions";
 
 const MovieCard = styled.div`
   width: 80vw;
@@ -70,7 +70,11 @@ const Movie = ({ movie }) => {
 
   const dispatch = useDispatch();
 
-  const handleFavorito = () => {
+  const favoritos = useSelector((state) => state.movies.favoritos);
+
+  const isFavorite = favoritos.filter((favorito) => favorito.id === id);
+
+  const handleAddFavorito = () => {
     dispatch(
       addFavorito({
         id,
@@ -81,15 +85,26 @@ const Movie = ({ movie }) => {
     );
   };
 
+  const handleDeleteFavorito = () => {
+    dispatch(deleteFavorito(id));
+  };
+
   return (
     <MovieCard image={poster_path}>
       <h2>{original_title}</h2>
       <div>
         <p>
-          {vote_average} <i className="fas fa-star"></i>
+          {vote_average} <i className="fas fa-star-half-alt"></i>
         </p>
         <MovieLink to={`/movie/${id}`}>Ver más</MovieLink>
-        <i className="far fa-heart" onClick={() => handleFavorito()}></i>
+        {isFavorite.length === 0 ? (
+          <i className="far fa-heart" onClick={() => handleAddFavorito()}></i>
+        ) : (
+          <i
+            className="fas fa-heart"
+            onClick={() => handleDeleteFavorito()}
+          ></i>
+        )}
       </div>
     </MovieCard>
   );

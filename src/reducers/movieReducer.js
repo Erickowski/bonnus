@@ -3,6 +3,7 @@ import {
   OBTENER_PELICULAS,
   AGREGAR_FAVORITO,
   OBTENER_FAVORITOS,
+  QUITAR_FAVORITO,
 } from "../types";
 
 const initialState = {
@@ -38,6 +39,15 @@ export default function (state = initialState, action) {
       return {
         ...state,
         favoritos: action.payload,
+      };
+    case QUITAR_FAVORITO:
+      const favoritos = state.favoritos.filter(
+        (favorito) => favorito.id !== action.payload
+      );
+      localStorage.setItem("favoritos", JSON.stringify(favoritos));
+      return {
+        ...state,
+        favoritos,
       };
     default:
       return state;

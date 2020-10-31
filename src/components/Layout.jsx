@@ -12,7 +12,11 @@ const Layout = ({ children }) => {
 
   useEffect(() => {
     let favoritos = JSON.parse(localStorage.getItem("favoritos"));
-    dispatch(getFavoritos(favoritos));
+    if (favoritos) {
+      dispatch(getFavoritos(favoritos));
+    } else {
+      localStorage.setItem("favoritos", JSON.stringify([]));
+    }
     // eslint-disable-next-line
   }, []);
 

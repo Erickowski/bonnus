@@ -5,7 +5,6 @@ import { useHistory } from "react-router-dom";
 import { MoviesContainer } from "../components/ui/MoviesContainer";
 
 import Movie from "../components/Movie";
-import Loader from "../components/Loader";
 
 const Favorites = () => {
   const history = useHistory();
@@ -21,7 +20,7 @@ const Favorites = () => {
       <h1>Mis favoritos</h1>
       <div>
         {favoritos.length === 0 ? (
-          <Loader />
+          <p>Aún no tienes peliculas favoritas, ve a agragar una.</p>
         ) : (
           favoritos.map((movie) => <Movie key={movie.id} movie={movie} />)
         )}
