@@ -8,6 +8,7 @@ export function autenticarUsuario(token, usuario) {
 
 const logearUsuario = (token, usuario) => {
   localStorage.setItem("token", token);
+  localStorage.setItem("usuario", JSON.stringify(usuario));
   return {
     type: AUTH_USUARIO,
     payload: {
@@ -25,7 +26,11 @@ export function logout() {
 
 const cerrarSesion = () => {
   localStorage.removeItem("token");
+  localStorage.removeItem("usuario");
+  localStorage.removeItem("favoritos");
   return {
     type: CERRAR_SESION,
   };
 };
+
+export function getUsuario() {}

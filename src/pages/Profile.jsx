@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "@emotion/styled";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -33,6 +33,9 @@ const Profile = () => {
   if (!usuario) {
     history.push("/");
   }
+
+  useEffect(() => {}, []);
+
   return (
     <ProfileContainer>
       <h1>Mi perfil</h1>
